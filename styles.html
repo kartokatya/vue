@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <style>
+        .alert {
+            transition: min-height 0.5s;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="sample">
+        <div class="alert" :style="[properties,minHeight]">
+            Some Text
+        </div>
+
+        <hr>
+
+        <table class="table table-bordered">
+            <tr v-for="(value,name) in properties">
+                <td>{{name}}</td>
+                <td>
+                    <input type="text"
+                           v-model="properties[name]">
+                </td>
+            </tr>
+        </table>
+        <button class="btn btn-primary" @click="height+=50">+ height</button>
+        {{minHeight}}
+    </div>
+</div>
+<script>
+    new Vue({
+        el: '.sample',
+        data: {
+            properties: {
+                color: '#ff0',
+                backgroundColor: '#050'
+            },
+            height: 50
+
+        },
+        computed: {
+            minHeight(){
+                return {
+                    minHeight: this.height + 'px'
+                }//лучше делать объекты, так как они хорошо склеиваются друг с другом
+            }
+        }
+    })
+
+</script>
+<script src="bootstrap/dist/js/bootstrap.bundle.js"></script>
+<script src="bootstrap/dist/js/bootstrap.js"></script>
+</body>
+
+</html>
